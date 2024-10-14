@@ -13,11 +13,18 @@ SPDX-License-Identifier: CC0-1.0
 Ensures that the check-digit of a given [International Securities Identification Numbers (ISIN)](https://en.wikipedia.org/wiki/International_Securities_Identification_Number) is correct:
 
 ```go
-isin, err := corfi.NewISIN("DE000BAY0017") // non alphanumeric characters will be ignored
-if err != nil {
-	fmt.Println(err) // isin is invalid
+package main
+
+import "fmt"
+import "cmdscale.com/corfi"
+
+func main() {
+	isin, err := corfi.NewISIN("DE000BAY0017") // non alphanumeric characters will be ignored
+	if err != nil {
+		fmt.Println(err) // isin is invalid
+	}
+	fmt.Println("ISIN is well-formed", isin.String())
 }
-fmt.Println("ISIN is well-formed", isin.String())
 ```
 
 ## Installation
