@@ -7,6 +7,7 @@ SPDX-License-Identifier: CC0-1.0
 
 [![CmdScale Project](https://github.com/cmdscale/.github/raw/main/profile/assets/CmdShield.svg)](https://cmdscale.com/)
 [![Go Reference](https://pkg.go.dev/badge/cmdscale.com/corfi.svg)](https://pkg.go.dev/cmdscale.com/corfi)
+[![CI Status](https://github.com/cmdscale/corfi/actions/workflows/main.yml/badge.svg)](https://github.com/cmdscale/corfi/actions?query=branch%3Amain)
 
 ## ISIN Validation
 
