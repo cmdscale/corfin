@@ -5,6 +5,7 @@ SPDX-License-Identifier: CC0-1.0
 
 # Corporate Finance Go module `cmdscale.com/corfi`
 
+[![CmdScale Project](https://github.com/cmdscale/.github/raw/main/profile/assets/CmdShield.svg)](https://cmdscale.com/)
 [![Go Reference](https://pkg.go.dev/badge/cmdscale.com/corfi.svg)](https://pkg.go.dev/cmdscale.com/corfi)
 
 ## ISIN Validation
