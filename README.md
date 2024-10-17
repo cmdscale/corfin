@@ -5,7 +5,7 @@ SPDX-License-Identifier: CC0-1.0
 
 # Corporate Finance Go module `cmdscale.com/corfin`
 
-[![CmdScale Project](https://github.com/cmdscale/.github/raw/main/profile/assets/CmdShield.svg)](https://cmdscale.com/)
+[![CmdScale Project](https://github.com/cmdscale/.github/raw/main/profile/assets/CmdShield.svg)](https://cmdscale.com/corfin)
 [![Go Reference](https://pkg.go.dev/badge/cmdscale.com/corfin.svg)](https://pkg.go.dev/cmdscale.com/corfin)
 [![CI Status](https://github.com/cmdscale/corfin/actions/workflows/main.yml/badge.svg)](https://github.com/cmdscale/corfin/actions?query=branch%3Amain)
 
