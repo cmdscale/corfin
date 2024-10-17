@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-package corfi
+package corfin
 
 import (
 	"errors"

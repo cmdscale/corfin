@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: CC0-1.0
 
-module cmdscale.com/corfi
+module cmdscale.com/corfin
 
 go 1.23.1
 

@@ -1,22 +1,25 @@
+# SPDX-FileCopyrightText: 2024 CmdScale GmbH
+#
+# SPDX-License-Identifier: CC0-1.0
+
 name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-
   test-go-cover:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up Go
-      uses: actions/setup-go@v5
-      with:
-        go-version: 'stable'
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "stable"
 
-    - name: Test
-      run: make test-go-cover
+      - name: Test
+        run: make test-go-cover

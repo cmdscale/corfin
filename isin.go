@@ -2,8 +2,8 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-// package corfi provides methods to check the validity of an International Securities Identification Number (ISIN)
-package corfi
+// package corfin provides methods to check the validity of an International Securities Identification Number (ISIN)
+package corfin
 
 import (
 	"regexp"
