@@ -6,6 +6,7 @@ package corfin
 
 import (
 	"errors"
+	"strconv"
 	"testing"
 
 	"code.pfad.fr/check"
@@ -111,5 +112,85 @@ func TestInvalidISIN(t *testing.T) {
 		f("A u0000xVGZa 9", 9, 3)
 
 		f("GB0002634947", 7, 6)
+	})
+}
+
+func FuzzNewISIN(f *testing.F) {
+	f.Add("US0378331005")
+	f.Add("DE0006231004")
+	f.Add("DE000BAY0017")
+	f.Add("XF0000C14922")
+	f.Add("NL0000729408")
+	f.Add("CH0031240127")
+	f.Add("US5949181045")
+	f.Add("US38259P5089")
+	f.Add("JP3946600008")
+	f.Add("DE000DZ21632")
+	f.Add("DE000DB7HWY7")
+	f.Add("DE000CM7VX13")
+	f.Add("CH0031240127")
+	f.Add("CA9861913023")
+	f.Fuzz(func(t *testing.T, s string) {
+		isin, err := NewISIN(s)
+		if err != nil {
+			var cerr CheckDigitError
+			var lerr LenError
+			if errors.As(err, &cerr) || errors.As(err, &lerr) {
+				return
+			}
+			t.Fatal(err)
+		}
+		isin2, err := NewISIN(isin.String())
+		check.Equal(t, nil, err).Fatal()
+		check.Equal(t, isin, isin2)
+	})
+}
+
+func FuzzGenerateISIN(f *testing.F) {
+	f.Add("US0378331005")
+	f.Add("DE0006231004")
+	f.Add("DE000BAY0017")
+	f.Add("XF0000C14922")
+	f.Add("NL0000729408")
+	f.Add("CH0031240127")
+	f.Add("US5949181045")
+	f.Add("US38259P5089")
+	f.Add("JP3946600008")
+	f.Add("DE000DZ21632")
+	f.Add("DE000DB7HWY7")
+	f.Add("DE000CM7VX13")
+	f.Add("CH0031240127")
+	f.Add("CA9861913023")
+	// wrong isins:
+	f.Add("CA9861913024")   // will be fixed
+	f.Add("CA9861913024 ")  // will be fixed
+	f.Add("CA986191302A")   // not fixable: last char is not a digit
+	f.Add("CA9861913024BC") // not fixable: too long
+	f.Fuzz(func(t *testing.T, s string) {
+		isin, err := NewISIN(s)
+		if err == nil {
+			return
+		}
+		var lerr LenError
+		if errors.As(err, &lerr) {
+			// hard to fix
+			return
+		}
+		var cerr CheckDigitError
+		if !errors.As(err, &cerr) {
+			t.Fatal(err)
+		}
+		if cerr.Computed == -1 {
+			// last char is not a digit: not fixable
+			return
+		}
+		// fix the check digit
+		s = isin.String() // get the cleaned version
+		s = s[:len(s)-1] + strconv.Itoa(cerr.Computed)
+		isin, err = NewISIN(s)
+		if err != nil {
+			t.Fatal(err)
+		}
+		check.Equal(t, isin.String(), s)
 	})
 }

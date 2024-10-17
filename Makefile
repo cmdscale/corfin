@@ -17,6 +17,5 @@ test-license:
 	reuse lint
 
 fuzz:
-	go test -fuzztime=10s -fuzz=NewIBAN
-	go test -fuzztime=10s -fuzz=NewBIC
-	go test -fuzztime=10s -fuzz=FromIBAN ./bic
+	go test -fuzztime=10s -fuzz=NewISIN
+	go test -fuzztime=10s -fuzz=GenerateISIN

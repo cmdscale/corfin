@@ -26,7 +26,7 @@ func NewISIN(s string, additionalRules ...ISINValidator) (ISIN, error) {
 	isin.NSIN = s[2:11]
 	isin.CheckDigit = int(s[11] - '0')
 	if isin.CheckDigit < 0 || isin.CheckDigit > 9 {
-		return isin, CheckDigitError{Given: isin.CheckDigit}
+		return isin, CheckDigitError{Given: isin.CheckDigit, Computed: -1}
 	}
 	c := isin.checkDigit()
 	if c != isin.CheckDigit {
@@ -113,6 +113,6 @@ func (e CheckDigitError) Error() string {
 	if e.Given < 0 || e.Given > 9 {
 		return "expected digit as last chart, got " + strconv.Quote(string(byte(e.Given+'0')))
 	}
-	// don't display the expected/actual digits, because the error is most likely somewhere else in the BBAN
+	// don't display the expected/actual digits, because the error is most likely somewhere else in the NSIN
 	return "wrong check digit"
 }
