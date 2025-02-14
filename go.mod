@@ -6,4 +6,4 @@ module cmdscale.com/corfin
 
 go 1.21
 
-require code.pfad.fr/check v0.5.0
+require code.pfad.fr/check v0.10.0
